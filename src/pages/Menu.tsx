@@ -71,7 +71,9 @@ export default function MenuPage() {
           {grouped.map((g) => (
             <section
               key={g.name}
-              ref={(el) => (sectionRefs.current[g.name] = el)}
+              ref={(el) => {
+                sectionRefs.current[g.name] = el;
+              }}
               id={g.name}
               className="scroll-mt-24"
             >
