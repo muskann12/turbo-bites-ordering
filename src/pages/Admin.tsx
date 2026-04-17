@@ -165,7 +165,7 @@ function Dashboard() {
               </div>
               <span className={cn(
                 "text-xs font-bold flex items-center gap-0.5",
-                s.trend === "up" ? "text-green-600" : "text-red-600"
+                s.trend === "up" ? "text-primary" : "text-destructive"
               )}>
                 {s.trend === "up" ? <ArrowUpRight className="h-3 w-3" /> : <ArrowDownRight className="h-3 w-3" />}
                 {s.change}
