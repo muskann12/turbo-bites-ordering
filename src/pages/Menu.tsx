@@ -13,7 +13,7 @@ export default function MenuPage() {
   const [active, setActive] = useState<string>(initialCat);
   const [selected, setSelected] = useState<MenuItem | null>(null);
   const [open, setOpen] = useState(false);
-  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
     const target = sectionRefs.current[initialCat];
