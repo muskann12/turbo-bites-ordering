@@ -3,10 +3,11 @@ import { useCart } from "@/context/CartContext";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { formatPKR } from "@/lib/format";
 
 export default function CartDrawer() {
   const { isOpen, setIsOpen, items, removeItem, updateQuantity, subtotal } = useCart();
-  const delivery = subtotal > 25 ? 0 : 2.99;
+  const delivery = subtotal > 2500 ? 0 : 250;
   const total = subtotal + delivery;
 
   return (
@@ -76,7 +77,7 @@ export default function CartDrawer() {
                             <Plus className="h-3 w-3" />
                           </button>
                         </div>
-                        <div className="font-bold text-primary">${line.totalPrice.toFixed(2)}</div>
+                        <div className="font-bold text-primary text-sm">{formatPKR(line.totalPrice)}</div>
                       </div>
                     </div>
                   </motion.li>
@@ -90,15 +91,15 @@ export default function CartDrawer() {
           <div className="border-t p-6 space-y-3 bg-background">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Subtotal</span>
-              <span className="font-bold">${subtotal.toFixed(2)}</span>
+              <span className="font-bold">{formatPKR(subtotal)}</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Delivery</span>
-              <span className="font-bold">{delivery === 0 ? "FREE" : `$${delivery.toFixed(2)}`}</span>
+              <span className="font-bold">{delivery === 0 ? "FREE" : formatPKR(delivery)}</span>
             </div>
             <div className="flex justify-between text-lg font-display">
               <span>Total</span>
-              <span className="text-primary">${total.toFixed(2)}</span>
+              <span className="text-primary">{formatPKR(total)}</span>
             </div>
             <Link
               to="/checkout"

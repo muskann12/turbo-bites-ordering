@@ -4,14 +4,16 @@ import { useState, useEffect } from "react";
 import { Minus, Plus, Flame } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { toast } from "sonner";
+import { formatPKR } from "@/lib/format";
 
 const ADDONS = [
-  { id: "cheese", name: "Extra Cheese", price: 1.0 },
-  { id: "jalapenos", name: "Jalapeños", price: 0.75 },
-  { id: "bacon", name: "Crispy Bacon", price: 1.5 },
-  { id: "dip", name: "Dip Sauce", price: 0.5 },
+  { id: "cheese", name: "Extra Cheese", price: 120 },
+  { id: "jalapenos", name: "Jalapeños", price: 80 },
+  { id: "bacon", name: "Crispy Bacon", price: 180 },
+  { id: "dip", name: "Dip Sauce", price: 60 },
 ];
 
+const MEAL_UPGRADE = 350;
 const SPICE_LEVELS = ["Mild", "Hot", "Extra Hot"];
 
 interface Props {
@@ -39,7 +41,7 @@ export default function ItemCustomizeDialog({ item, open, onOpenChange }: Props)
   if (!item) return null;
 
   const addonTotal = ADDONS.filter((a) => addons.includes(a.id)).reduce((s, a) => s + a.price, 0);
-  const mealUpgrade = makeMeal ? 3.49 : 0;
+  const mealUpgrade = makeMeal ? MEAL_UPGRADE : 0;
   const unitPrice = item.price + addonTotal + mealUpgrade;
   const total = unitPrice * qty;
 
@@ -84,7 +86,7 @@ export default function ItemCustomizeDialog({ item, open, onOpenChange }: Props)
           <label className="flex items-center justify-between p-4 rounded-2xl bg-secondary/15 border-2 border-secondary cursor-pointer">
             <div>
               <div className="font-bold">🍟 Make it a Meal?</div>
-              <div className="text-xs text-muted-foreground">Add fries + drink for $3.49</div>
+              <div className="text-xs text-muted-foreground">Add fries + drink for {formatPKR(MEAL_UPGRADE)}</div>
             </div>
             <input
               type="checkbox"
@@ -108,7 +110,7 @@ export default function ItemCustomizeDialog({ item, open, onOpenChange }: Props)
                   }`}
                 >
                   <span>{a.name}</span>
-                  <span className="text-xs opacity-80">+${a.price.toFixed(2)}</span>
+                  <span className="text-xs opacity-80">+{formatPKR(a.price)}</span>
                 </button>
               ))}
             </div>
@@ -137,7 +139,7 @@ export default function ItemCustomizeDialog({ item, open, onOpenChange }: Props)
             </div>
           )}
 
-          <div className="flex items-center justify-between pt-2">
+          <div className="flex items-center justify-between pt-2 gap-3">
             <div className="flex items-center gap-3 bg-muted rounded-full p-1">
               <button
                 onClick={() => setQty(Math.max(1, qty - 1))}
@@ -157,9 +159,9 @@ export default function ItemCustomizeDialog({ item, open, onOpenChange }: Props)
             </div>
             <button
               onClick={handleAdd}
-              className="flex-1 ml-3 bg-flame text-primary-foreground font-bold rounded-full py-3 px-5 hover:opacity-90 transition-opacity shadow-flame"
+              className="flex-1 bg-flame text-primary-foreground font-bold rounded-full py-3 px-5 hover:opacity-90 transition-opacity shadow-flame text-sm"
             >
-              Add • ${total.toFixed(2)}
+              Add • {formatPKR(total)}
             </button>
           </div>
         </div>

@@ -5,14 +5,15 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Clock, MessageCircle, CreditCard, Wallet } from "lucide-react";
 import { toast } from "sonner";
+import { formatPKR } from "@/lib/format";
 
 export default function CheckoutPage() {
   const { items, subtotal, clear } = useCart();
   const navigate = useNavigate();
-  const [pay, setPay] = useState<"card" | "cash">("card");
+  const [pay, setPay] = useState<"card" | "cash">("cash");
   const [form, setForm] = useState({ name: "", phone: "", address: "", notes: "" });
 
-  const delivery = subtotal > 25 ? 0 : 2.99;
+  const delivery = subtotal > 2500 ? 0 : 250;
   const total = subtotal + delivery;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,10 +34,10 @@ export default function CheckoutPage() {
     }
     const text = encodeURIComponent(
       `🍔 *TURBO BITES ORDER*\n\nName: ${form.name}\nPhone: ${form.phone}\nAddress: ${form.address}\n\nItems:\n${items
-        .map((i) => `• ${i.quantity}x ${i.item.name} – $${i.totalPrice.toFixed(2)}`)
-        .join("\n")}\n\n*Total: $${total.toFixed(2)}*`
+        .map((i) => `• ${i.quantity}x ${i.item.name} – ${formatPKR(i.totalPrice)}`)
+        .join("\n")}\n\n*Total: ${formatPKR(total)}*`
     );
-    window.open(`https://wa.me/15551234567?text=${text}`, "_blank");
+    window.open(`https://wa.me/923111111111?text=${text}`, "_blank");
   };
 
   if (items.length === 0) {
@@ -77,26 +78,26 @@ export default function CheckoutPage() {
                 placeholder="Full name *"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary"
+                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary bg-background"
               />
               <input
-                placeholder="Phone *"
+                placeholder="Phone (e.g. 0311-1234567) *"
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary"
+                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary bg-background"
               />
               <input
                 placeholder="Delivery address *"
                 value={form.address}
                 onChange={(e) => setForm({ ...form, address: e.target.value })}
-                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary sm:col-span-2"
+                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary sm:col-span-2 bg-background"
               />
               <textarea
                 placeholder="Order notes (optional)"
                 value={form.notes}
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
                 rows={2}
-                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary sm:col-span-2 resize-none"
+                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary sm:col-span-2 resize-none bg-background"
               />
             </div>
           </section>
@@ -104,16 +105,6 @@ export default function CheckoutPage() {
           <section className="bg-card rounded-3xl p-6 border shadow-card">
             <h2 className="font-display text-2xl mb-4">2. Payment Method</h2>
             <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => setPay("card")}
-                className={`flex flex-col items-center gap-1 rounded-2xl p-4 border-2 transition-colors ${
-                  pay === "card" ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary"
-                }`}
-              >
-                <CreditCard className="h-6 w-6" />
-                <span className="text-sm font-bold">Card</span>
-              </button>
               <button
                 type="button"
                 onClick={() => setPay("cash")}
@@ -124,6 +115,16 @@ export default function CheckoutPage() {
                 <Wallet className="h-6 w-6" />
                 <span className="text-sm font-bold">Cash on Delivery</span>
               </button>
+              <button
+                type="button"
+                onClick={() => setPay("card")}
+                className={`flex flex-col items-center gap-1 rounded-2xl p-4 border-2 transition-colors ${
+                  pay === "card" ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary"
+                }`}
+              >
+                <CreditCard className="h-6 w-6" />
+                <span className="text-sm font-bold">Card / Easypaisa</span>
+              </button>
             </div>
           </section>
 
@@ -132,7 +133,7 @@ export default function CheckoutPage() {
               type="submit"
               className="flex-1 bg-flame text-primary-foreground font-bold rounded-full py-4 shadow-flame hover:opacity-90"
             >
-              Place Order · ${total.toFixed(2)}
+              Place Order · {formatPKR(total)}
             </button>
             <button
               type="button"
@@ -158,14 +159,14 @@ export default function CheckoutPage() {
                     <div className="text-xs text-muted-foreground">{line.addons.join(", ")}</div>
                   )}
                 </div>
-                <div className="font-bold text-primary">${line.totalPrice.toFixed(2)}</div>
+                <div className="font-bold text-primary text-xs">{formatPKR(line.totalPrice)}</div>
               </li>
             ))}
           </ul>
           <div className="border-t mt-4 pt-4 space-y-1.5 text-sm">
-            <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Delivery</span><span>{delivery === 0 ? "FREE" : `$${delivery.toFixed(2)}`}</span></div>
-            <div className="flex justify-between font-display text-xl pt-1"><span>Total</span><span className="text-primary">${total.toFixed(2)}</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>{formatPKR(subtotal)}</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">Delivery</span><span>{delivery === 0 ? "FREE" : formatPKR(delivery)}</span></div>
+            <div className="flex justify-between font-display text-xl pt-1"><span>Total</span><span className="text-primary">{formatPKR(total)}</span></div>
           </div>
         </aside>
       </div>

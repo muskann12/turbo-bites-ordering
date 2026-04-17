@@ -1,4 +1,4 @@
-import { Flame, ShoppingBag, Menu as MenuIcon } from "lucide-react";
+import { Flame, ShoppingBag, Menu as MenuIcon, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,6 +10,7 @@ const links = [
   { to: "/menu", label: "Menu" },
   { to: "/deals", label: "Deals" },
   { to: "/about", label: "About" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
@@ -75,7 +76,7 @@ export default function Header() {
             className="md:hidden flex h-10 w-10 items-center justify-center rounded-full bg-muted"
             aria-label="Menu"
           >
-            <MenuIcon className="h-5 w-5" />
+            {open ? <X className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
           </button>
         </div>
       </div>
