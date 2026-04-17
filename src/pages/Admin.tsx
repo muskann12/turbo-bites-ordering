@@ -44,10 +44,10 @@ const TOP_ITEMS = [
 ];
 
 const statusColor = (s: string) =>
-  s === "Delivered" ? "bg-green-100 text-green-700"
-  : s === "Out for delivery" ? "bg-blue-100 text-blue-700"
-  : s === "Preparing" ? "bg-amber-100 text-amber-700"
-  : "bg-red-100 text-red-700";
+  s === "Delivered" ? "bg-secondary/30 text-secondary-foreground"
+  : s === "Out for delivery" ? "bg-primary/15 text-primary"
+  : s === "Preparing" ? "bg-secondary text-secondary-foreground"
+  : "bg-destructive/15 text-destructive";
 
 export default function Admin() {
   const [tab, setTab] = useState("dashboard");
