@@ -3,21 +3,22 @@ import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { toast } from "sonner";
+import { formatPKR } from "@/lib/format";
 
 const mains = [
-  { id: "m1", name: "Smash Burger", price: 7.99 },
-  { id: "m2", name: "Spicy Chicken Sandwich", price: 7.49 },
-  { id: "m3", name: "Pepperoni Slice (2pc)", price: 8.99 },
+  { id: "m1", name: "Smash Burger", price: 850 },
+  { id: "m2", name: "Spicy Chicken Sandwich", price: 790 },
+  { id: "m3", name: "Pepperoni Slice (2pc)", price: 690 },
 ];
 const sides = [
-  { id: "si1", name: "Crispy Fries", price: 3.49 },
-  { id: "si2", name: "Onion Rings", price: 3.99 },
-  { id: "si3", name: "Loaded Fries", price: 4.99 },
+  { id: "si1", name: "Crispy Fries", price: 350 },
+  { id: "si2", name: "Onion Rings", price: 390 },
+  { id: "si3", name: "Loaded Fries", price: 590 },
 ];
 const drinks = [
-  { id: "d1", name: "Coke", price: 2.49 },
-  { id: "d2", name: "Lemonade", price: 2.99 },
-  { id: "d3", name: "Choco Shake", price: 4.49 },
+  { id: "d1", name: "Coke", price: 180 },
+  { id: "d2", name: "Lemonade", price: 220 },
+  { id: "d3", name: "Choco Shake", price: 490 },
 ];
 
 const COMBO_DISCOUNT = 0.8; // 20% off
@@ -89,11 +90,11 @@ export default function ComboBuilder() {
                 : "bg-background/10 text-primary-foreground hover:bg-background/20"
             }`}
           >
-            <span className="flex items-center gap-2 font-semibold">
+            <span className="flex items-center gap-2 font-semibold text-sm">
               {selected === item.id && <Check className="h-4 w-4" />}
               {item.name}
             </span>
-            <span className="text-sm opacity-80">${item.price.toFixed(2)}</span>
+            <span className="text-xs opacity-80">{formatPKR(item.price)}</span>
           </button>
         ))}
       </div>
@@ -120,12 +121,12 @@ export default function ComboBuilder() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 max-w-md mx-auto bg-background rounded-3xl p-6 shadow-card text-center"
+          className="mt-10 max-w-md mx-auto bg-background rounded-3xl p-6 shadow-elevated text-center"
         >
-          <div className="text-sm text-muted-foreground line-through">${original.toFixed(2)}</div>
-          <div className="font-display text-5xl text-primary">${total.toFixed(2)}</div>
+          <div className="text-sm text-muted-foreground line-through">{formatPKR(original)}</div>
+          <div className="font-display text-5xl text-primary">{formatPKR(total)}</div>
           <div className="text-xs uppercase font-bold text-secondary-foreground bg-secondary inline-block px-3 py-1 rounded-full mt-2">
-            You save ${(original - total).toFixed(2)}
+            You save {formatPKR(original - total)}
           </div>
           <button
             onClick={handleAdd}

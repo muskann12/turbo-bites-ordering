@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Link } from "react-router-dom";
 import wings from "@/assets/deal-wings.jpg";
 import combo from "@/assets/deal-combo.jpg";
 import midnight from "@/assets/deal-midnight.jpg";
@@ -8,8 +9,8 @@ const deals = [
   {
     title: "Midnight Cravings",
     subtitle: "10pm – 2am",
-    description: "Hot pizza slice + cola for just $7.99. Late night legends only.",
-    price: "$7.99",
+    description: "Hot pizza slice + cola for just Rs. 799. Late night legends only.",
+    price: "Rs. 799",
     image: midnight,
     tag: "HOT",
     bg: "from-primary to-foreground",
@@ -26,8 +27,8 @@ const deals = [
   {
     title: "Student Bundle",
     subtitle: "With valid ID",
-    description: "Wings + loaded fries + shake. Fuel your finals for $11.99.",
-    price: "$11.99",
+    description: "Wings + loaded fries + shake. Fuel your finals for Rs. 1,199.",
+    price: "Rs. 1,199",
     image: wings,
     tag: "HOT",
     bg: "from-foreground to-primary",
@@ -36,7 +37,7 @@ const deals = [
 
 export default function DealsSlider() {
   return (
-    <section className="py-16 md:py-24 bg-muted/40">
+    <section className="py-16 md:py-24 bg-background">
       <div className="container">
         <div className="flex items-end justify-between mb-8 gap-4">
           <div>
@@ -72,15 +73,15 @@ export default function DealsSlider() {
                       <h3 className="font-display text-3xl md:text-4xl mt-3">{deal.title}</h3>
                       <p className="text-sm opacity-80">{deal.subtitle}</p>
                     </div>
-                    <div className="font-display text-3xl text-secondary bg-background/15 backdrop-blur-sm px-4 py-2 rounded-2xl">
+                    <div className="font-display text-2xl md:text-3xl text-secondary bg-background/15 backdrop-blur-sm px-4 py-2 rounded-2xl whitespace-nowrap">
                       {deal.price}
                     </div>
                   </div>
                   <div className="relative z-10 max-w-xs">
                     <p className="text-sm opacity-95 mb-4">{deal.description}</p>
-                    <button className="bg-background text-foreground font-bold rounded-full px-5 py-2 text-sm hover:bg-secondary transition-colors">
+                    <Link to="/menu" className="inline-block bg-background text-foreground font-bold rounded-full px-5 py-2 text-sm hover:bg-secondary transition-colors">
                       Order Now →
-                    </button>
+                    </Link>
                   </div>
                   <img
                     src={deal.image}

@@ -80,7 +80,7 @@ export default function MenuPage() {
               <h2 className="font-display text-4xl mb-4 flex items-center gap-2">
                 <span>{g.emoji}</span> {g.name}
               </h2>
-              <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
                 {g.items.map((item) => (
                   <MenuItemCard key={item.id} item={item} onSelect={handleSelect} />
                 ))}
