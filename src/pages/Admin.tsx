@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {
   LayoutDashboard, ShoppingBag, UtensilsCrossed, Tag, Users, Settings,
   TrendingUp, DollarSign, Package, Clock, Search, Bell, Menu as MenuIcon,
-  ArrowUpRight, ArrowDownRight, MoreVertical, Flame, Eye, Edit, Trash2, Plus
+  ArrowUpRight, ArrowDownRight, MoreVertical, Flame, Eye, Edit, Trash2, Plus, Star
 } from "lucide-react";
 import { menuItems, categories } from "@/lib/menuData";
 import { formatPKR } from "@/lib/format";

@@ -24,13 +24,13 @@ import pizza from "@/assets/cat-pizza.jpg";
 import shake from "@/assets/cat-shake.jpg";
 import platter from "@/assets/cat-platter.jpg";
 
-export const categories: { name: Category; image: string; emoji: string; tagline: string }[] = [
-  { name: "Burgers", image: burger, emoji: "🍔", tagline: "Smashed, stacked, legendary" },
-  { name: "Crispy Chicken", image: chicken, emoji: "🍗", tagline: "11-spice golden crunch" },
-  { name: "Loaded Fries", image: fries, emoji: "🍟", tagline: "Cheesy, saucy, glorious" },
-  { name: "Pizzas", image: pizza, emoji: "🍕", tagline: "Hand-tossed wood-fired" },
-  { name: "Shakes", image: shake, emoji: "🥤", tagline: "Thick, creamy, cold" },
-  { name: "Platters", image: platter, emoji: "🍽️", tagline: "Feed the whole crew" },
+export const categories: { name: Category; image: string; emoji: string; tagline: string; description: string; itemCount: number }[] = [
+  { name: "Burgers", image: burger, emoji: "🍔", tagline: "Premium Beef Burgers", description: "Handcrafted beef patties with premium ingredients. Our signature smash burgers are made fresh daily with 100% grass-fed beef, melted cheeses, and house-made sauces. Perfect for burger lovers!", itemCount: 5 },
+  { name: "Crispy Chicken", image: chicken, emoji: "🍗", tagline: "Golden Fried Chicken", description: "Crispy on the outside, juicy on the inside. Our chicken is marinated in our secret 11-spice blend and fried to golden perfection. Served with premium dipping sauces.", itemCount: 5 },
+  { name: "Loaded Fries", image: fries, emoji: "🍟", tagline: "Gourmet Potato Sides", description: "Hand-cut Belgian fries topped with premium cheese sauce, bacon, jalapeños, and special seasonings. The perfect side to any meal or a complete meal by itself!", itemCount: 4 },
+  { name: "Pizzas", image: pizza, emoji: "🍕", tagline: "Italian Wood-Fired", description: "Authentic Italian-style pizzas made with San Marzano tomatoes, fresh mozzarella, and premium toppings. Hand-tossed dough and wood-fired oven for that perfect crust.", itemCount: 5 },
+  { name: "Shakes", image: shake, emoji: "🥤", tagline: "Premium Beverages", description: "Thick, creamy shakes made with premium ice cream and fresh ingredients. Choose from classic flavors to innovative combinations. Perfect refreshment after your meal!", itemCount: 4 },
+  { name: "Platters", image: platter, emoji: "🍽️", tagline: "Family Combo Meals", description: "Perfect for sharing! Our platters combine multiple items for a complete dining experience. Great for families, groups, or special occasions.", itemCount: 3 },
 ];
 
 export const menuItems: MenuItem[] = [

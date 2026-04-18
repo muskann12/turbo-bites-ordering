@@ -78,23 +78,23 @@ export default function ComboBuilder() {
     onChange: (id: string) => void;
   }) => (
     <div>
-      <div className="font-display text-2xl text-secondary mb-3">{title}</div>
-      <div className="space-y-2">
+      <div className="font-display text-xl md:text-2xl text-secondary mb-2 md:mb-3">{title}</div>
+      <div className="space-y-1.5 md:space-y-2">
         {items.map((item) => (
           <button
             key={item.id}
             onClick={() => onChange(item.id)}
-            className={`w-full flex items-center justify-between rounded-2xl px-4 py-3 text-left transition-all ${
+            className={`w-full flex items-center justify-between rounded-xl md:rounded-2xl px-3 md:px-4 py-2.5 md:py-3 text-left transition-all text-sm md:text-base ${
               selected === item.id
                 ? "bg-secondary text-secondary-foreground shadow-flame"
                 : "bg-background/10 text-primary-foreground hover:bg-background/20"
             }`}
           >
-            <span className="flex items-center gap-2 font-semibold text-sm">
-              {selected === item.id && <Check className="h-4 w-4" />}
-              {item.name}
+            <span className="flex items-center gap-2 font-semibold">
+              {selected === item.id && <Check className="h-3.5 md:h-4 w-3.5 md:w-4 flex-shrink-0" />}
+              <span className="line-clamp-1">{item.name}</span>
             </span>
-            <span className="text-xs opacity-80">{formatPKR(item.price)}</span>
+            <span className="text-[10px] md:text-xs opacity-80 flex-shrink-0 ml-1">{formatPKR(item.price)}</span>
           </button>
         ))}
       </div>
@@ -102,16 +102,16 @@ export default function ComboBuilder() {
   );
 
   return (
-    <section className="py-16 md:py-24 bg-flame relative overflow-hidden">
+    <section className="py-12 md:py-24 bg-flame relative overflow-hidden">
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,white_1px,transparent_1px)] [background-size:30px_30px]" />
       <div className="container relative">
-        <div className="text-center text-primary-foreground mb-10">
-          <Sparkles className="h-8 w-8 mx-auto text-secondary mb-2" />
-          <h2 className="font-display text-5xl md:text-6xl">Build Your Combo</h2>
-          <p className="opacity-90 mt-2">Pick 1 Main + 1 Side + 1 Drink. Save 20% instantly.</p>
+        <div className="text-center text-primary-foreground mb-8 md:mb-10">
+          <Sparkles className="h-6 md:h-8 w-6 md:w-8 mx-auto text-secondary mb-2 md:mb-3" />
+          <h2 className="font-display text-4xl md:text-6xl">Build Your Combo</h2>
+          <p className="opacity-90 mt-2 text-sm md:text-base">Pick 1 Main + 1 Side + 1 Drink. Save 20% instantly.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           <Group title="1. Main" items={mains} selected={main} onChange={setMain} />
           <Group title="2. Side" items={sides} selected={side} onChange={setSide} />
           <Group title="3. Drink" items={drinks} selected={drink} onChange={setDrink} />
@@ -121,16 +121,16 @@ export default function ComboBuilder() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 max-w-md mx-auto bg-background rounded-3xl p-6 shadow-elevated text-center"
+          className="mt-8 md:mt-10 max-w-md mx-auto bg-background rounded-2xl md:rounded-3xl p-5 md:p-6 shadow-elevated text-center"
         >
-          <div className="text-sm text-muted-foreground line-through">{formatPKR(original)}</div>
-          <div className="font-display text-5xl text-primary">{formatPKR(total)}</div>
-          <div className="text-xs uppercase font-bold text-secondary-foreground bg-secondary inline-block px-3 py-1 rounded-full mt-2">
+          <div className="text-xs md:text-sm text-muted-foreground line-through">{formatPKR(original)}</div>
+          <div className="font-display text-4xl md:text-5xl text-primary mt-1">{formatPKR(total)}</div>
+          <div className="text-[10px] md:text-xs uppercase font-bold text-secondary-foreground bg-secondary inline-block px-2.5 md:px-3 py-0.5 md:py-1 rounded-full mt-2 md:mt-3">
             You save {formatPKR(original - total)}
           </div>
           <button
             onClick={handleAdd}
-            className="mt-5 w-full bg-foreground text-background rounded-full py-4 font-bold hover:bg-primary transition-colors"
+            className="mt-4 md:mt-5 w-full bg-foreground text-background rounded-full py-3 md:py-4 font-bold hover:bg-primary transition-colors text-sm md:text-base"
           >
             Add Combo to Cart
           </button>

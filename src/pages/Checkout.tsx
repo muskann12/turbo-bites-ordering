@@ -44,11 +44,11 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <div className="container py-20 text-center">
-          <div className="text-6xl mb-4">🍔</div>
-          <h1 className="font-display text-4xl">Your cart is empty</h1>
-          <p className="text-muted-foreground mt-2">Add some bites before checking out.</p>
-          <Link to="/menu" className="inline-block mt-6 bg-primary text-primary-foreground font-bold rounded-full px-8 py-3">
+        <div className="container py-12 md:py-20 text-center">
+          <div className="text-5xl md:text-6xl mb-4">🍔</div>
+          <h1 className="font-display text-3xl md:text-4xl">Your cart is empty</h1>
+          <p className="text-muted-foreground mt-2 text-sm md:text-base">Add some bites before checking out.</p>
+          <Link to="/menu" className="inline-block mt-6 bg-primary text-primary-foreground font-bold rounded-full px-6 md:px-8 py-2 md:py-3 text-sm md:text-base">
             Browse Menu
           </Link>
         </div>
@@ -60,87 +60,99 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div className="bg-foreground py-8 text-background">
+      <div className="bg-foreground py-6 md:py-8 text-background">
         <div className="container">
-          <h1 className="font-display text-4xl md:text-5xl">Express Checkout</h1>
-          <p className="opacity-80 text-sm flex items-center gap-2 mt-1">
-            <Clock className="h-4 w-4 text-secondary" /> No login needed · 20 min delivery
+          <h1 className="font-display text-3xl md:text-5xl">Express Checkout</h1>
+          <p className="opacity-80 text-xs md:text-sm flex items-center gap-2 mt-1">
+            <Clock className="h-4 w-4 text-secondary flex-shrink-0" /> No login needed · 20 min delivery
           </p>
         </div>
       </div>
 
-      <div className="container py-10 grid lg:grid-cols-[1fr_400px] gap-8">
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <section className="bg-card rounded-3xl p-6 border shadow-card">
-            <h2 className="font-display text-2xl mb-4">1. Your Details</h2>
-            <div className="grid sm:grid-cols-2 gap-3">
+      <div className="container py-6 md:py-10 grid lg:grid-cols-[1fr_auto] gap-6 md:gap-8">
+        <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+          <section className="bg-gradient-to-br from-card to-card/80 rounded-2xl md:rounded-3xl p-5 md:p-7 border border-border/60 shadow-lg">
+            <div className="flex items-center gap-3 mb-4 md:mb-5">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">1</div>
+              <h2 className="font-display text-xl md:text-2xl">Your Details</h2>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
               <input
                 placeholder="Full name *"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary bg-background"
+                className="rounded-xl md:rounded-2xl border-2 border-border/50 px-4 md:px-5 py-3 md:py-3.5 outline-none focus:border-primary focus:bg-background/50 bg-background/80 text-sm md:text-base transition-colors hover:border-primary/50"
               />
               <input
                 placeholder="Phone (e.g. 0311-1234567) *"
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary bg-background"
+                className="rounded-xl md:rounded-2xl border-2 border-border/50 px-4 md:px-5 py-3 md:py-3.5 outline-none focus:border-primary focus:bg-background/50 bg-background/80 text-sm md:text-base transition-colors hover:border-primary/50"
               />
               <input
                 placeholder="Delivery address *"
                 value={form.address}
                 onChange={(e) => setForm({ ...form, address: e.target.value })}
-                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary sm:col-span-2 bg-background"
+                className="rounded-xl md:rounded-2xl border-2 border-border/50 px-4 md:px-5 py-3 md:py-3.5 outline-none focus:border-primary focus:bg-background/50 sm:col-span-2 bg-background/80 text-sm md:text-base transition-colors hover:border-primary/50"
               />
               <textarea
                 placeholder="Order notes (optional)"
                 value={form.notes}
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
                 rows={2}
-                className="rounded-2xl border-2 border-border px-4 py-3 outline-none focus:border-primary sm:col-span-2 resize-none bg-background"
+                className="rounded-xl md:rounded-2xl border-2 border-border/50 px-4 md:px-5 py-3 md:py-3.5 outline-none focus:border-primary focus:bg-background/50 sm:col-span-2 resize-none bg-background/80 text-sm md:text-base transition-colors hover:border-primary/50"
               />
             </div>
           </section>
 
-          <section className="bg-card rounded-3xl p-6 border shadow-card">
-            <h2 className="font-display text-2xl mb-4">2. Payment Method</h2>
-            <div className="grid grid-cols-2 gap-3">
+          <section className="bg-gradient-to-br from-card to-card/80 rounded-2xl md:rounded-3xl p-5 md:p-7 border border-border/60 shadow-lg">
+            <div className="flex items-center gap-3 mb-4 md:mb-5">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-secondary-foreground font-bold text-sm">2</div>
+              <h2 className="font-display text-xl md:text-2xl">Payment Method</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
               <button
                 type="button"
                 onClick={() => setPay("cash")}
-                className={`flex flex-col items-center gap-1 rounded-2xl p-4 border-2 transition-colors ${
-                  pay === "cash" ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary"
+                className={`flex flex-col items-center gap-2 rounded-2xl md:rounded-3xl p-4 md:p-5 border-2 transition-all duration-300 transform hover:scale-105 ${
+                  pay === "cash" 
+                    ? "bg-gradient-to-br from-primary to-primary/90 text-primary-foreground border-primary shadow-lg" 
+                    : "border-border hover:border-primary/50 bg-background/50 hover:bg-background/80"
                 }`}
               >
-                <Wallet className="h-6 w-6" />
-                <span className="text-sm font-bold">Cash on Delivery</span>
+                <Wallet className="h-6 md:h-7 w-6 md:w-7" />
+                <span className="text-xs md:text-sm font-bold whitespace-nowrap">Cash</span>
+                <span className="text-[10px] opacity-70">On Delivery</span>
               </button>
               <button
                 type="button"
                 onClick={() => setPay("card")}
-                className={`flex flex-col items-center gap-1 rounded-2xl p-4 border-2 transition-colors ${
-                  pay === "card" ? "bg-primary text-primary-foreground border-primary" : "border-border hover:border-primary"
+                className={`flex flex-col items-center gap-2 rounded-2xl md:rounded-3xl p-4 md:p-5 border-2 transition-all duration-300 transform hover:scale-105 ${
+                  pay === "card" 
+                    ? "bg-gradient-to-br from-secondary to-secondary/90 text-secondary-foreground border-secondary shadow-lg" 
+                    : "border-border hover:border-secondary/50 bg-background/50 hover:bg-background/80"
                 }`}
               >
-                <CreditCard className="h-6 w-6" />
-                <span className="text-sm font-bold">Card / Easypaisa</span>
+                <CreditCard className="h-6 md:h-7 w-6 md:w-7" />
+                <span className="text-xs md:text-sm font-bold whitespace-nowrap">Card</span>
+                <span className="text-[10px] opacity-70">/ Easypaisa</span>
               </button>
             </div>
           </section>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-2.5 md:gap-3">
             <button
               type="submit"
-              className="flex-1 bg-flame text-primary-foreground font-bold rounded-full py-4 shadow-flame hover:opacity-90"
+              className="flex-1 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground font-bold rounded-full py-4 shadow-lg shadow-primary/40 hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm md:text-base"
             >
-              Place Order · {formatPKR(total)}
+              ✓ Place Order · {formatPKR(total)}
             </button>
             <button
               type="button"
               onClick={handleWhatsapp}
-              className="flex items-center justify-center gap-2 bg-foreground text-background font-bold rounded-full py-4 px-5 hover:bg-primary"
+              className="flex items-center justify-center gap-2 bg-gradient-to-r from-foreground to-foreground/90 text-background font-bold rounded-full py-4 px-4 md:px-6 hover:scale-105 transition-all duration-300 hover:shadow-lg text-sm md:text-base"
             >
-              <MessageCircle className="h-5 w-5" /> Send via WhatsApp
+              <MessageCircle className="h-5 w-5" /> <span className="hidden sm:inline">WhatsApp</span>
             </button>
           </div>
         </form>

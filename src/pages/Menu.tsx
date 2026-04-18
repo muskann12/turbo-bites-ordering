@@ -40,34 +40,34 @@ export default function MenuPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div className="bg-flame py-10 text-primary-foreground">
+      <div className="bg-flame py-6 sm:py-8 md:py-10 text-primary-foreground">
         <div className="container">
-          <h1 className="font-display text-5xl md:text-6xl">Full Menu</h1>
-          <p className="opacity-90 mt-1">25+ ways to ruin your diet. We're not sorry.</p>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl">Full Menu</h1>
+          <p className="opacity-90 mt-1 text-sm md:text-base">25+ ways to ruin your diet. We're not sorry.</p>
         </div>
       </div>
 
-      <div className="container py-8 grid lg:grid-cols-[220px_1fr] gap-8">
+      <div className="container py-6 md:py-8 grid lg:grid-cols-[180px_1fr] gap-6 md:gap-8">
         <aside className="lg:sticky lg:top-20 self-start">
-          <div className="lg:block flex gap-2 overflow-x-auto pb-2 lg:pb-0 lg:space-y-1">
+          <div className="lg:block flex gap-2 overflow-x-auto pb-3 md:pb-0 lg:space-y-1 lg:flex-col">
             {categories.map((c) => (
               <button
                 key={c.name}
                 onClick={() => goTo(c.name)}
                 className={cn(
-                  "lg:w-full whitespace-nowrap text-left px-4 py-3 rounded-2xl font-bold text-sm transition-colors flex items-center gap-2",
+                  "lg:w-full whitespace-nowrap text-left px-3 md:px-4 py-2 md:py-3 rounded-2xl font-bold text-xs md:text-sm transition-colors flex items-center gap-2 flex-shrink-0 lg:flex-shrink",
                   active === c.name
                     ? "bg-primary text-primary-foreground shadow-flame"
                     : "bg-muted hover:bg-muted/70"
                 )}
               >
-                <span className="text-lg">{c.emoji}</span> {c.name}
+                <span className="text-lg">{c.emoji}</span> <span className="hidden lg:inline">{c.name}</span>
               </button>
             ))}
           </div>
         </aside>
 
-        <div className="space-y-12">
+        <div className="space-y-8 md:space-y-12">
           {grouped.map((g) => (
             <section
               key={g.name}
@@ -77,10 +77,10 @@ export default function MenuPage() {
               id={g.name}
               className="scroll-mt-24"
             >
-              <h2 className="font-display text-4xl mb-4 flex items-center gap-2">
-                <span>{g.emoji}</span> {g.name}
+              <h2 className="font-display text-3xl md:text-4xl mb-4 md:mb-6 flex items-center gap-2 pb-2 border-b-2 border-primary/30">
+                <span className="text-3xl md:text-4xl">{g.emoji}</span> <span>{g.name}</span>
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-5">
                 {g.items.map((item) => (
                   <MenuItemCard key={item.id} item={item} onSelect={handleSelect} />
                 ))}

@@ -50,54 +50,54 @@ export default function Hero() {
       <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
       <div className="absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-secondary/20 blur-3xl" />
 
-      <div className="container relative grid lg:grid-cols-2 gap-8 py-16 lg:py-28 items-center">
+      <div className="container relative grid lg:grid-cols-2 gap-4 md:gap-8 py-12 sm:py-16 lg:py-28 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-background space-y-6"
+          className="text-background space-y-4 md:space-y-6"
         >
-          <div className="inline-flex items-center gap-2 rounded-full bg-background/15 px-4 py-2 backdrop-blur-md border border-background/20">
-            <Clock className="h-4 w-4 text-secondary" />
-            <span className="text-sm font-bold uppercase tracking-wider">Get it in 20 mins</span>
+          <div className="inline-flex items-center gap-2 rounded-full bg-background/15 px-3 md:px-4 py-1.5 md:py-2 backdrop-blur-md border border-background/20 hover:bg-background/20 transition-colors">
+            <Clock className="h-3.5 md:h-4 w-3.5 md:w-4 text-secondary animate-pulse" />
+            <span className="text-xs md:text-sm font-bold uppercase tracking-wider">⚡ Get it in 20 mins</span>
           </div>
 
-          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl leading-[0.9]">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.9] font-black">
             Hot.<br />
             Fresh.<br />
             <span className="text-secondary">Turbo fast.</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-background/90 max-w-md">
-            Hand-crafted burgers, crispy chicken & loaded fries — delivered straight to your door, faster than you can say "extra cheese".
+          <p className="text-base sm:text-lg md:text-xl text-background/90 max-w-md leading-relaxed">
+            Hand-crafted burgers, crispy chicken & loaded fries — delivered straight to your door, faster than you can say "extra cheese". 🍔
           </p>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 md:gap-3 pt-2">
             <Link
               to="/menu"
-              className="inline-flex items-center gap-2 rounded-full bg-secondary px-8 py-4 font-bold text-secondary-foreground hover:scale-105 transition-transform shadow-flame"
+              className="inline-flex items-center gap-2 rounded-full bg-secondary px-5 md:px-8 py-3 md:py-4 font-bold text-secondary-foreground hover:scale-110 active:scale-95 transition-all shadow-lg shadow-secondary/40 text-sm md:text-base hover:shadow-xl"
             >
-              <Flame className="h-5 w-5" />
-              Start My Order
+              <Flame className="h-4 md:h-5 w-4 md:w-5" />
+              Order Now
             </Link>
             <Link
               to="/deals"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-background/40 px-8 py-4 font-bold text-background hover:bg-background/10 transition-colors backdrop-blur-sm"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-background/40 px-5 md:px-8 py-3 md:py-4 font-bold text-background hover:bg-background/20 transition-all backdrop-blur-sm text-sm md:text-base hover:border-background/60"
             >
-              View Deals
+              🔥 Hot Deals
             </Link>
           </div>
 
-          <div className="flex items-center gap-6 pt-4">
+          <div className="flex items-center gap-4 md:gap-6 pt-4">
             <div className="flex items-center gap-2">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-secondary text-secondary" />
+                  <Star key={i} className="h-3 md:h-4 w-3 md:w-4 fill-secondary text-secondary" />
                 ))}
               </div>
-              <span className="text-sm font-semibold">4.9 / 5</span>
+              <span className="text-xs md:text-sm font-semibold">4.9 / 5</span>
             </div>
-            <div className="text-sm">
+            <div className="text-xs md:text-sm">
               <span className="font-bold text-secondary">50K+</span> happy bellies
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function Hero() {
                 onClick={() => setIndex(i)}
                 aria-label={`Go to slide ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all ${
-                  i === index ? "w-10 bg-secondary" : "w-4 bg-background/40 hover:bg-background/60"
+                  i === index ? "w-8 md:w-10 bg-secondary" : "w-3 md:w-4 bg-background/40 hover:bg-background/60"
                 }`}
               />
             ))}

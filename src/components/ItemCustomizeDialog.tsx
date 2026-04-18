@@ -68,24 +68,24 @@ export default function ItemCustomizeDialog({ item, open, onOpenChange }: Props)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-lg p-0 overflow-hidden gap-0 max-h-[90vh] overflow-y-auto">
-        <div className="relative h-48 bg-muted">
+      <DialogContent className="w-[95vw] sm:w-full max-w-2xl p-0 overflow-hidden gap-0 max-h-[95vh] overflow-y-auto rounded-3xl">
+        <div className="relative h-40 sm:h-56 md:h-64 bg-muted">
           <img src={item.image} alt={item.name} className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
-          <div className="absolute bottom-3 left-4 text-background">
-            <div className="font-display text-3xl leading-none">{item.name}</div>
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent" />
+          <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-6 text-background">
+            <div className="font-display text-2xl sm:text-3xl md:text-4xl font-black leading-none">{item.name}</div>
           </div>
         </div>
 
-        <div className="p-6 space-y-5">
+        <div className="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-5">
           <DialogHeader className="sr-only">
             <DialogTitle>{item.name}</DialogTitle>
           </DialogHeader>
-          <p className="text-sm text-muted-foreground">{item.description}</p>
+          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{item.description}</p>
 
-          <label className="flex items-center justify-between p-4 rounded-2xl bg-secondary/15 border-2 border-secondary cursor-pointer">
+          <label className="flex items-center justify-between p-3 sm:p-4 rounded-2xl bg-secondary/15 border-2 border-secondary cursor-pointer hover:bg-secondary/20 transition-colors">
             <div>
-              <div className="font-bold">🍟 Make it a Meal?</div>
+              <div className="font-bold text-sm sm:text-base">🍟 Make it a Meal?</div>
               <div className="text-xs text-muted-foreground">Add fries + drink for {formatPKR(MEAL_UPGRADE)}</div>
             </div>
             <input
@@ -97,16 +97,16 @@ export default function ItemCustomizeDialog({ item, open, onOpenChange }: Props)
           </label>
 
           <div>
-            <div className="font-bold mb-2">Extra Toppings</div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="font-bold mb-3 text-sm sm:text-base">✨ Extra Toppings</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {ADDONS.map((a) => (
                 <button
                   key={a.id}
                   onClick={() => toggleAddon(a.id)}
-                  className={`flex items-center justify-between rounded-xl px-3 py-2 text-sm border-2 transition-colors ${
+                  className={`flex items-center justify-between rounded-xl px-3 py-2 text-xs sm:text-sm border-2 font-medium transition-all ${
                     addons.includes(a.id)
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-background border-border hover:border-primary"
+                      ? "bg-primary text-primary-foreground border-primary scale-105 shadow-lg"
+                      : "bg-background border-border hover:border-primary hover:bg-primary/5"
                   }`}
                 >
                   <span>{a.name}</span>
@@ -118,18 +118,18 @@ export default function ItemCustomizeDialog({ item, open, onOpenChange }: Props)
 
           {item.spicyLevels && (
             <div>
-              <div className="font-bold mb-2 flex items-center gap-1">
-                <Flame className="h-4 w-4 text-primary" /> Spicy Level
+              <div className="font-bold mb-3 text-sm sm:text-base flex items-center gap-1">
+                <Flame className="h-4 w-4 sm:h-5 sm:w-5 text-primary" /> Spicy Level
               </div>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {SPICE_LEVELS.map((lvl) => (
                   <button
                     key={lvl}
                     onClick={() => setSpice(lvl)}
-                    className={`rounded-xl py-2 text-sm font-bold border-2 transition-colors ${
+                    className={`rounded-xl py-2 px-2 text-xs sm:text-sm font-bold border-2 transition-all ${
                       spice === lvl
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "border-border hover:border-primary"
+                        ? "bg-primary text-primary-foreground border-primary scale-105 shadow-md"
+                        : "border-border hover:border-primary hover:bg-background/50"
                     }`}
                   >
                     {lvl}
@@ -139,27 +139,27 @@ export default function ItemCustomizeDialog({ item, open, onOpenChange }: Props)
             </div>
           )}
 
-          <div className="flex items-center justify-between pt-2 gap-3">
-            <div className="flex items-center gap-3 bg-muted rounded-full p-1">
+          <div className="flex items-center justify-between pt-2 sm:pt-4 gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 bg-muted rounded-full p-1 sm:p-1.5">
               <button
                 onClick={() => setQty(Math.max(1, qty - 1))}
-                className="h-9 w-9 rounded-full bg-background flex items-center justify-center"
+                className="h-8 sm:h-10 w-8 sm:w-10 rounded-full bg-background flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
                 aria-label="Decrease"
               >
-                <Minus className="h-4 w-4" />
+                <Minus className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
               </button>
-              <span className="font-bold min-w-[1.5rem] text-center">{qty}</span>
+              <span className="font-bold min-w-[2rem] text-center text-sm sm:text-base">{qty}</span>
               <button
                 onClick={() => setQty(qty + 1)}
-                className="h-9 w-9 rounded-full bg-background flex items-center justify-center"
+                className="h-8 sm:h-10 w-8 sm:w-10 rounded-full bg-background flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
                 aria-label="Increase"
               >
-                <Plus className="h-4 w-4" />
+                <Plus className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
               </button>
             </div>
             <button
               onClick={handleAdd}
-              className="flex-1 bg-flame text-primary-foreground font-bold rounded-full py-3 px-5 hover:opacity-90 transition-opacity shadow-flame text-sm"
+              className="flex-1 bg-gradient-to-r from-primary to-secondary text-primary-foreground font-bold rounded-full py-3 sm:py-4 px-4 sm:px-6 hover:shadow-lg hover:scale-105 active:scale-95 transition-all shadow-lg text-xs sm:text-sm md:text-base"
             >
               Add • {formatPKR(total)}
             </button>
